@@ -1,0 +1,32 @@
+server:
+  port: 8080
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: adminService
+          predicates:
+            - Path=/api/admin/**
+          uri: lb://ADMIN
+        - id: clientService
+          predicates:
+            - Path=/api/client/**
+          uri: lb://CLIENT
+        - id: orderService
+          predicates:
+            - Path=/api/order/**
+          uri: lb://ORDER
+        - id: courierMobile
+          predicates:
+            - Path=/api/curierMobile/**
+          uri: lb://COURIERMOBILE
+        - id: clientMobile
+          predicates:
+            - Path=/api/clientMobile/**
+          uri: lb://CLIENTMOBILE
+
+
